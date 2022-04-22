@@ -1,0 +1,15 @@
+#!/usr/bin/env lua
+
+local ts = require("init")
+local uci = require("uci").cursor()
+--local --log = require("tch.logger").new("traffic_seperation", 6)                                          
+
+local function hostapd_exit()
+    print("hostapd exist")
+    ----log.error("Traffic seperation exist due to %s", debug.traceback())
+end
+
+local rc, err = xpcall(ts.start, hostapd_exit)
+if not rc then
+    --log:error("Error is %s",err)
+end

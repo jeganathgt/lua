@@ -1,0 +1,100 @@
+eth- Add vlan
+1) sudo ubus call traffic_seperation dump_vlan
+2) sudo ubus call traffic_seperation add_vlan '{"vlanid":110, "iflist":["eth0", "eth1"], "primary_vlan":1}'
+3) Ctrl+c Traffic_seperation and restart Traffic_seperation
+4) sudo ubus call traffic_seperation dump_vlan
+5) cat /tmp/vlan.conf
+6) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["eth3.110"]}'
+7) sudo ubus call traffic_seperation dump_vlan
+8) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["eth3.110"]}'
+9) sudo ubus call traffic_seperation dump_vlan
+10) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["eth1.110"]}'
+11) sudo ubus call traffic_seperation dump_vlan
+12) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["eth2.110"]}'
+13) sudo ubus call traffic_seperation dump_vlan
+14) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["eth2"]}'
+
+
+wl - Add vlan
+1) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wl1.110"]}'
+2) sudo ubus call traffic_seperation dump_vlan
+3) Ctrl+c Traffic_seperation and restart Traffic_seperation
+4) sudo ubus call traffic_seperation dump_vlan
+5) cat /tmp/vlan.conf
+6) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wl1_1"]}'
+7) sudo ubus call traffic_seperation dump_vlan
+8) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["wl1"]}'
+9) sudo ubus call traffic_seperation dump_vlan
+10) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["wl1_1.110"]}'
+11) sudo ubus call traffic_seperation dump_vlan
+12) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wl1_1.110"]}'
+13) sudo ubus call traffic_seperation dump_vlan
+14) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wl1_1"]}'
+
+wds - Add vlan
+1) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wds1_1"]}'
+2) sudo ubus call traffic_seperation dump_vlan
+3) Ctrl+c Traffic_seperation and restart Traffic_seperation
+4) sudo ubus call traffic_seperation dump_vlan
+5) cat /tmp/vlan.conf
+6) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wds1_2"]}'
+7) sudo ubus call traffic_seperation dump_vlan
+8) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wds1_1.100"]}'
+9) sudo ubus call traffic_seperation dump_vlan
+10) sudo ubus call traffic_seperation add_vlan '{"vlanid":110,"iflist":["wds1_1.200"]}'
+11) sudo ubus call traffic_seperation dump_vlan
+
+Add vlan
+
+1) sudo ubus call traffic_seperation add_vlan '{"vlanid":110}'
+{
+	"Status": "Failure"
+}
+
+2) sudo ubus call traffic_seperation add_vlan '{"vlanid":120,"iflist":["eth3"], "primary_vlan":1}'
+{
+	"Status": "Failure"
+}
+
+
+eth - remove_vlan
+1) sudo ubus call traffic_seperation remove_vlan '{"vlanid":120,"iflist":["eth3.120"]}'
+2) sudo ubus call traffic_seperation dump_vlan
+3) sudo ubus call traffic_seperation remove_vlan '{"vlanid":120,"iflist":["eth3"]}'
+4) sudo ubus call traffic_seperation dump_vlan
+5) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["eth3"]}'
+6) sudo ubus call traffic_seperation dump_vlan
+
+wl - remove_vlan
+1) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["wl1.110"]}'
+2) sudo ubus call traffic_seperation dump_vlan
+3) sudo ubus call traffic_seperation remove_vlan '{"vlanid":120,"iflist":["wl1"]}'
+4) sudo ubus call traffic_seperation dump_vlan
+5) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["wl1"]}'
+6) sudo ubus call traffic_seperation dump_vlan
+
+wds - remove_vlan
+1) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["wds1_2"]}'
+2) sudo ubus call traffic_seperation dump_vlan
+3) sudo ubus call traffic_seperation remove_vlan '{"vlanid":120,"iflist":["wds1_2.120"]}'
+4) sudo ubus call traffic_seperation dump_vlan
+5) sudo ubus call traffic_seperation remove_vlan '{"vlanid":110,"iflist":["wds1_3.110"]}'
+6) sudo ubus call traffic_seperation dump_vlan
+
+Remove_vlan
+1) sudo ubus call traffic_seperation remove_vlan '{"vlanid":120, "iflist":["eth3.100"]}'
+{
+	"Status": "Failure"
+}
+
+
+delete vlan
+1) sudo ubus call traffic_seperation delete_vlan '{"vlanid":110}'
+2) sudo ubus call traffic_seperation dump_vlan
+3) sudo ubus call traffic_seperation delete_vlan '{"vlanid":120}'
+4) sudo ubus call traffic_seperation dump_vlan
+5) sudo ubus call traffic_seperation delete_vlan '{"vlanid":130}'
+6) sudo ubus call traffic_seperation dump_vlan
+
+Known issues:
+1) Blindly add unnown iface to vlan
